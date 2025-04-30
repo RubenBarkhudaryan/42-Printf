@@ -38,7 +38,8 @@ ft_printf("Hello %s, your score is %d%%\n", "User", 100);
 ```
 
 ## Project Structure
-libft/ – utilities for correct functionality of ft_printf
+
+**libft/** – utilities for correct functionality of ft_printf
 
 **Makefile** - automated compilation of program by using command ```make```
 
