@@ -41,7 +41,9 @@ ft_printf("Hello %s, your score is %d%%\n", "User", 100);
 libft/ – utilities for correct functionality of ft_printf
 
 **Makefile** - automated compilation of program by using command ```make```
+
 **ft_printf.c** - the main part of ft_printf implementation
+
 **ft_printf.h** - header file where were defined all the neccessary functions and macros
 
 **Author
