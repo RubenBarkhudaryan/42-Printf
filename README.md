@@ -1,51 +1,73 @@
-## 42 ft_printf README.md
-
 # 42 ft_printf
 
-ft_printf is a reimplementation of the standard C library `printf` function. The challenge is to master variadic functions, format specifiers, and produce a robust, error-safe implementation that handles numerous conversion options.
+## Overview
+This project reimplements printf in C as ft_printf, with variadic argument handling and formatted output conversion.
+
+It focuses on building a reliable formatting engine from scratch while preserving expected output and return-value behavior.
 
 ## Features
+Supported conversions:
+- c
+- s
+- p
+- d
+- i
+- u
+- x
+- X
+- percent literal
 
-- **Conversion Specifiers:** `%c`, `%s`, `%p`, `%d`, `%i`, `%u`, `%x`, `%X`, and `%%`.  
-- **Flags & Formatting:** Handles flags (`-`, `0`, etc.), field widths, and precision.  
-- **Robust Error Management:** Ensures safe handling of edge cases and erroneous input.
+Additional formatting behaviors are implemented according to project scope and tests.
 
-## Installation
+## Core Concepts
 
-Clone the repository:
+### Variadic Arguments
+ft_printf reads unknown argument lists using stdarg macros. Correct type extraction per conversion is essential.
 
-## Bash
-```
-git clone https://github.com/RubBarkhudaryan/42-Printf.git
-```
+### Format Parsing Pipeline
+Each conversion follows a pipeline:
+1. detect `%`
+2. parse conversion context (flags/width/precision if supported)
+3. dispatch to conversion handler
+4. write formatted output
+5. accumulate printed character count
 
-## Compile the library:
+### Return Value Semantics
+Like printf, ft_printf returns the number of characters printed. This makes output accounting part of core logic, not an optional extra.
 
-```
-make
-```
+### Base Conversions
+Numeric conversions require custom integer-to-string formatting in decimal and hexadecimal bases, including unsigned and pointer representations.
+
+## Build
+- make
 
 ## Usage
-Include the header file in your project:
+Include header:
+- ft_printf.h
 
-```
-#include "ft_printf.h"
-```
+Example:
+- ft_printf("Score: %d percent\n", 100);
 
-## Example usage
-```
-ft_printf("Hello %s, your score is %d%%\n", "User", 100);
-```
+Additional examples:
+- ft_printf("Hex: %x %X\n", 255, 255);
+- ft_printf("Ptr: %p\n", ptr);
+- ft_printf("String: %s Char: %c\n", "hello", 'A');
 
 ## Project Structure
+- ft_printf.c: main dispatcher and formatting flow
+- ft_printf.h: declarations
+- libft: helper utility library
+- Makefile: build rules
 
-**libft/** – utilities for correct functionality of ft_printf
+Typical internal split:
+- parser/dispatcher
+- conversion handlers
+- write wrappers and counter updates
 
-**Makefile** - automated compilation of program by using command ```make```
+## Key Learnings
+- Variadic functions with stdarg
+- Number/string conversion pipelines
+- Output accounting and return values
 
-**ft_printf.c** - the main part of ft_printf implementation
-
-**ft_printf.h** - header file where were defined all the neccessary functions and macros
-
-**Author
-Rub Barkhudaryan**
+## Notes
+ft_printf is a core 42 project and a practical foundation for future parser-driven implementations.
